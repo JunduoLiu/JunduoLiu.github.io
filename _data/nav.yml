@@ -1,6 +1,9 @@
-- name: Posts
-  link: /posts
-- name: Categories
-  link: /categories/
+- name: Films/Videos
+  link: /films/videos/
+- name: Games
+  link: /games/
 - name: About & Contact
   link: /
+  name: Photography
+  link :/photo/
+  
