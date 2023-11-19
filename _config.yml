@@ -36,6 +36,18 @@ autopages:
     title: 'Posts in category :cat'
     permalink: '/category/:cat'
     silent: false
+#films
+films:
+  - title: "Film 1"
+    date: 2023-01-01
+    categories: [film]
+    url: "/films/film1.html"
+  - title: "Film 2"
+    date: 2023-02-01
+    categories: [film]
+    url: "/films/film2.html"
+  # Add more films as needed
+
 
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
