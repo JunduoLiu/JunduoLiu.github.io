@@ -41,7 +41,7 @@ films:
   - title: "China Jar"
     description: "An unexpected intertwinement between the struggle of a Chinese migrant worker and a restaurant owner's family drama."
     video_url: "https://vimeo.com/763648482"
-    thumbnail: "/Thumbnails/ChinaJar.jpg"
+    thumbnail: "/Thumbnails/ChinaJar.png"
   - title: "Film 2"
     description: "Description of Film 2."
     video_url: "https://www.example.com/film2"
