@@ -6,13 +6,4 @@
   link: /games/
 - name: Photography
   link: /photo/
-  <!-- Example navigation bar -->
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html">About</a></li>
-    <li><a href="/photography.html">Photography</a></li>
-    <li><a href="/films.html">Films/Videos</a></li> 
-  </ul>
-</nav>
 
