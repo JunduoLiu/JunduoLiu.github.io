@@ -38,10 +38,10 @@ autopages:
     silent: false
 #films
 films:
-  - title: "Film 1"
+  - title: "China Jar"
     date: 2023-01-01
     categories: [film]
-    url: "/films/film1.html"
+    url: "https://vimeo.com/763648482"
   - title: "Film 2"
     date: 2023-02-01
     categories: [film]
