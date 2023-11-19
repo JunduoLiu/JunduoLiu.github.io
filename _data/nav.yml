@@ -1,11 +1,11 @@
-# - name: About & Contact
-#   link: /
-# - name: Films
-#   link: /films/
-# - name: Games
-#   link: /games/
-# - name: Photography
-#   link: /photo/
+- name: About & Contact
+  link: /
+- name: Films
+  link: /films/
+- name: Games
+  link: /games/
+- name: Photography
+  link: /photo/
   <!-- Example navigation bar -->
 <nav>
   <ul>
