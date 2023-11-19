@@ -1,6 +1,20 @@
 ---
 layout: default
-title: LightSpeed Home
+title: Games
 pagination:
     enabled: true
 ---
+
+
+<h2>Games</h2>
+
+<ul>
+  {% for game in site.games %}
+    <li>
+      <h3>{{ game.title }}</h3>
+      <p>{{ game.description }}</p>
+      <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}"style="max-width: 600px; max-height: 338px;">
+      <a href="{{ film.video_url }}" target="_blank">Play</a>
+    </li>
+  {% endfor %}
+</ul>
