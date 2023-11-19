@@ -7,6 +7,16 @@ pagination:
 
 <h2>Films</h2>
 
+<ul>
+  {% for film in site.films %}
+    <li>
+      <h3>{{ film.title }}</h3>
+      <p>{{ film.description }}</p>
+      <a href="{{ film.url }}">Watch Now</a>
+    </li>
+  {% endfor %}
+</ul>
+
 {% for film in paginator.films %}
   <span class="film-item">
     <span class="mobile-hide">{{ film.date | date: '%Y-%m-%d' }} >> </span>
