@@ -41,6 +41,7 @@ films:
   - title: "China Jar"
     description: "Description of Film 1."
     video_url: "https://www.youtube.com/watch?v=jFGx9Xt0EEk"
+    thumbnail: "C:\Users\adouo\Pictures\Screenshots\Screenshot 2023-11-08 062842.png"
   - title: "Film 2"
     description: "Description of Film 2."
     video_url: "https://www.example.com/film2"
