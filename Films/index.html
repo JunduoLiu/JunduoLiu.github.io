@@ -12,13 +12,12 @@ pagination:
     <li>
       <h3>{{ film.title }}</h3>
       <p>{{ film.description }}</p>
-      <!-- Add an embedded video player -->
-      <iframe width="560" height="315" src="{{ film.video_url }}" frameborder="0" allowfullscreen></iframe>
-      <!-- Or, you can provide a direct link to the video -->
+      <img src="{{ film.thumbnail | relative_url }}" alt="{{ film.title }}">
       <a href="{{ film.video_url }}" target="_blank">Watch Now</a>
     </li>
   {% endfor %}
 </ul>
+
 
 {% for film in paginator.films %}
   <span class="film-item">
