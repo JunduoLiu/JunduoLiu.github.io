@@ -1,7 +1,28 @@
 ---
 layout: default
-title: LightSpeed Home
+title: Films
 pagination:
     enabled: true
 ---
+
+<h2>Films</h2>
+
+{% for film in paginator.films %}
+  <span class="film-item">
+    <span class="mobile-hide">{{ film.date | date: '%Y-%m-%d' }} >> </span>
+    <a href="{{ film.url }}">{{ film.title }}</a>
+    <span class="float-right mobile-hide">{{ film.categories }}</span>
+  </span>
+{% endfor %}
+
+<div class="film-nav">
+  {% if paginator.total_pages > 1 %}
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">&lt;- Older</a>
+    {% endif %}
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer -&gt;</a>
+    {% endif %}
+  {% endif %}
+</div>
 
