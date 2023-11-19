@@ -46,8 +46,12 @@ films:
     video_url: "https://vimeo.com/763715358"
     description: "After retiring, the man's life becomes dull. Fishing becomes his escape. One night, he meets a girl selling a fish-like stone, adding a sparkle to his monotonous life."
     thumbnail: "/Thumbnails/FishingNights.png"
-  # Add more films as needed
-
+#games
+games:
+  - title: "Superstitions DEMO (2022)"
+    video_url: "https://vimeo.com/763648482"
+    description: "An unexpected intertwinement between the struggle of a Chinese migrant worker and a restaurant owner's family drama."
+    thumbnail: "/Thumbnails/ChinaJar.png"
 
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
