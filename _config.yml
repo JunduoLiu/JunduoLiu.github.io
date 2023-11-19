@@ -49,8 +49,14 @@ films:
 #games
 games:
   - title: "Superstitions DEMO (2022)"
-    video_url: "https://vimeo.com/763648482"
-    description: "An unexpected intertwinement between the struggle of a Chinese migrant worker and a restaurant owner's family drama."
+    game_url: "https://toby0001.itch.io/superstitions"
+    description: >
+      Superstitions is a narrative adventure game set in the wakening millennial
+      in rural China. It follows the auxiliary-police protagonist, Xin, 
+      as he tries to solve a mysterious case along with his personal issue. 
+      The game tries to draw a countryside social landscape consistent with the
+      real one shaped by the state's political agenda, 
+      belief systems and people's struggle.
     thumbnail: "/Thumbnails/ChinaJar.png"
 
 # Exclusions
