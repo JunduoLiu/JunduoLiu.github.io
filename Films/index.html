@@ -13,7 +13,7 @@ pagination:
       <h3>{{ film.title }}</h3>
       <p>{{ film.description }}</p>
       <img src="{{ film.thumbnail | relative_url }}" alt="{{ film.title }}"style="max-width: 800px; max-height: 450px;">
-      <a href="{{ film.video_url }}" target="_blank">Watch Now</a>
+      <a href="{{ film.video_url }}" target="_blank">Watch</a>
     </li>
   {% endfor %}
 </ul>
