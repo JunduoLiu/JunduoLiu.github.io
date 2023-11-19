@@ -1,0 +1,17 @@
+<!-- films.html -->
+---
+layout: default
+title: Films/Videos
+---
+
+<h2>Films/Videos</h2>
+
+<ul>
+  {% for film in site.films %}
+    <li>
+      <h3>{{ film.title }}</h3>
+      <p>{{ film.description }}</p>
+      <a href="{{ film.url }}">Watch Now</a>
+    </li>
+  {% endfor %}
+</ul>
