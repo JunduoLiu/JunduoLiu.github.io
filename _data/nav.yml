@@ -1,7 +1,7 @@
 - name: About & Contact
   link: /
-- name: Films/Videos
-  link: /films/videos/
+- name: Films
+  link: /films/
 - name: Games
   link: /games/
 - name: Photography
