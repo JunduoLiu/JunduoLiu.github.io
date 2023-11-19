@@ -40,7 +40,7 @@ autopages:
 films:
   - title: "China Jar"
     description: "Description of Film 1."
-    video_url: "https://www.youtube.com/watch?v=jFGx9Xt0EEk"
+    video_url: "https://vimeo.com/763648482"
     thumbnail: "![Screenshot 2023-11-08 062842](https://github.com/JunduoLiu/JunduoLiu.github.io/assets/39835703/ba21e184-596e-4e71-b0ed-7de66f40ed0d)"
   - title: "Film 2"
     description: "Description of Film 2."
