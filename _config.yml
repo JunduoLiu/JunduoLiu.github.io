@@ -39,13 +39,11 @@ autopages:
 #films
 films:
   - title: "China Jar"
-    date: 2023-01-01
-    categories: [film]
-    url: "https://vimeo.com/763648482"
+    description: "Description of Film 1."
+    video_url: "https://vimeo.com/763648482"
   - title: "Film 2"
-    date: 2023-02-01
-    categories: [film]
-    url: "/films/film2.html"
+    description: "Description of Film 2."
+    video_url: "https://www.example.com/film2"
   # Add more films as needed
 
 
