@@ -50,14 +50,7 @@ films:
 games:
   - title: "Superstitions DEMO (2022)"
     game_url: "https://toby0001.itch.io/superstitions"
-    description: >
-      Superstitions is a narrative adventure game set in the wakening millennial
-      in rural China. It follows the auxiliary-police protagonist, Xin, 
-      as he tries to solve a mysterious case along with his personal issue. 
-      The game tries to draw a countryside social landscape consistent with the
-      real one shaped by the state's political agenda, 
-      belief systems and people's struggle.
-    thumbnail: "/Thumbnails/ChinaJar.png"
+    thumbnail: "/Thumbnails/Superstitions.png"
 
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
