@@ -2,7 +2,7 @@
 
 
 <!-- Content -->
-<img src="me.jpg" alt="Junduo Liu's Profile Image" width="280" height="250">
+<img src="me2.jpg" alt="Junduo Liu's Profile Image" width="280" height="250">
 <br>
 <br>
 <p>Junduo Liu is an independent game designer and filmmaker based in New York. </p>
