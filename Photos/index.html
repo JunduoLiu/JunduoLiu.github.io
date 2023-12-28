@@ -1,0 +1,18 @@
+---
+layout: default
+title: Photos
+pagination:
+    enabled: true
+---
+
+<h2>Photos</h2>
+
+<div class="photos-container">
+  {% for photo in site.photos %}
+    <div class="photo-item">
+      <img src="{{ photo.image | relative_url }}" alt="{{ photo.title }}" style="max-width: 400px; max-height: 270px;">
+    </div>
+
+    {% cycle '', '<div class="new-line"></div>' %}
+  {% endfor %}
+</div>
