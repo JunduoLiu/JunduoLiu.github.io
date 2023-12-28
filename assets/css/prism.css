@@ -23,27 +23,12 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 .photos-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 0; /* Remove default margins */
 }
 
 .photo-item {
-  margin: 0; /* Remove individual item margins */
+  width: 48%; /* Adjust as needed based on your design */
+  margin: 1%; /* Adjust as needed for spacing */
   box-sizing: border-box;
-  width: 25%; /* Adjust as needed for the number of photos you want in a row */
-  padding: 5px; /* Add padding between photos */
-}
-
-@media (max-width: 767px) {
-  .photo-item {
-    width: 50%; /* Adjust for smaller screens, showing two photos per row */
-  }
-}
-
-@media (max-width: 479px) {
-  .photo-item {
-    width: 100%; /* Adjust for even smaller screens, showing one photo per row */
-  }
 }
 
 
