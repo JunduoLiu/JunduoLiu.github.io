@@ -10,9 +10,7 @@ pagination:
 <div class="photos-container">
   {% for photo in site.photos %}
     <div class="photo-item">
-      <img src="{{ photo.thumbnail | relative_url }}" alt="Photo {{ forloop.index }}" style="max-width: 400px; max-height: 270px;">
+      <img src="{{ photo.thumbnail | relative_url }}" alt="Photo" style="max-width: 100%; height: auto;">
     </div>
-
-    {% cycle '', '<div class="new-line"></div>' %}
   {% endfor %}
 </div>
