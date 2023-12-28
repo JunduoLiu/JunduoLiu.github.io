@@ -8,15 +8,28 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 }
 
 .game-item {
+  position: relative;
   width: 48%; /* Adjust as needed based on your design */
   margin: 1%; /* Adjust as needed for spacing */
   box-sizing: border-box;
+  overflow: hidden; /* Hide overflow content (larger image) */
+}
+
+.game-item:hover img {
+  transform: scale(1.2); /* Scale up the image on hover */
+}
+
+.game-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
 .new-line {
   width: 100%;
   clear: both;
 }
+
 
 /* Add this to your CSS file */
 
