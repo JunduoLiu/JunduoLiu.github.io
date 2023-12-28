@@ -18,17 +18,33 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 .game-item img {
   width: 100%;
   height: auto;
-  transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
-.game-item:hover img {
-  transform: scale(1.2); /* Scale up the image on hover */
-}
-
-.new-line {
+.game-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  clear: both;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and transparency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.game-item:hover .overlay {
+  opacity: 1;
+}
+
+.game-item .overlay img {
+  width: 80%; /* Adjust the size of the enlarged image within the overlay */
+  height: auto;
+  border: 2px solid #fff; /* Add a border to the enlarged image */
+  border-radius: 5px; /* Optional: Add border-radius for a rounded look */
+}
+
 
 
 
