@@ -24,8 +24,8 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
   position: absolute;
   top: 0;
   left: 0;
-  width: 150%;
-  height: 150%;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and transparency */
   display: flex;
   align-items: center;
@@ -39,10 +39,10 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 }
 
 .game-item .overlay img {
-  width: 90%; /* Adjust the size of the enlarged image within the overlay */
+  width: 100%; /* Adjust the size of the enlarged image within the overlay */
   height: auto;
-  border: 2px solid #fff; /* Add a border to the enlarged image */
-  border-radius: 3px; /* Optional: Add border-radius for a rounded look */
+  border: 1px solid #fff; /* Add a border to the enlarged image */
+  border-radius: 2px; /* Optional: Add border-radius for a rounded look */
 }
 
 
