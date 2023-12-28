@@ -17,3 +17,16 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
   width: 100%;
   clear: both;
 }
+
+/* Add this to your CSS file */
+
+.photos-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo-item {
+  width: 48%; /* Adjust as needed based on your design */
+  margin: 1%; /* Adjust as needed for spacing */
+  box-sizing: border-box;
+}
