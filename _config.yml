@@ -64,6 +64,25 @@ games:
     game_url: "https://toby0001.itch.io/superstitions"
     thumbnail: "/Thumbnails/Superstitions.png"
 
+photos:
+  - thumbnail: "Photos/1.jpg"
+  - thumbnail: "Photos/2.jpg"
+  - thumbnail: "Photos/3.jpg"
+  - thumbnail: "Photos/4.jpg"
+  - thumbnail: "Photos/5.jpg"
+  - thumbnail: "Photos/6.jpg"
+  - thumbnail: "Photos/7.jpg"
+  - thumbnail: "Photos/8.jpg"
+  - thumbnail: "Photos/9.jpg"
+  - thumbnail: "Photos/10.jpg"
+  - thumbnail: "Photos/11.jpg"
+  - thumbnail: "Photos/12.jpg"
+  - thumbnail: "Photos/13.jpg"
+  - thumbnail: "Photos/14.jpg"
+  - thumbnail: "Photos/15.jpg"
+  - thumbnail: "Photos/16.jpg"
+  - thumbnail: "Photos/17.jpg"
+
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
 
