@@ -29,11 +29,9 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 
 .photo-item {
   margin: 0; /* Remove individual item margins */
-  padding: 0; /* Remove padding between photos */
   box-sizing: border-box;
-  width: 33.33%; /* Adjust for three photos per row */
-  height: 150px; /* Set a fixed height (adjust as needed) */
-  overflow: hidden; /* Hide overflow to maintain fixed size */
+  width: 25%; /* Adjust as needed for the number of photos you want in a row */
+  padding: 5px; /* Add padding between photos */
 }
 
 @media (max-width: 767px) {
@@ -47,5 +45,6 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
     width: 100%; /* Adjust for even smaller screens, showing one photo per row */
   }
 }
+
 
 
