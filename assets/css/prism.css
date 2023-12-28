@@ -39,10 +39,10 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 }
 
 .game-item .overlay img {
-  width: 80%; /* Adjust the size of the enlarged image within the overlay */
+  width: 90%; /* Adjust the size of the enlarged image within the overlay */
   height: auto;
   border: 2px solid #fff; /* Add a border to the enlarged image */
-  border-radius: 5px; /* Optional: Add border-radius for a rounded look */
+  border-radius: 3px; /* Optional: Add border-radius for a rounded look */
 }
 
 
