@@ -30,7 +30,7 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 .photo-item {
   margin: 0; /* Remove individual item margins */
   box-sizing: border-box;
-  width: 25%; /* Adjust as needed for the number of photos you want in a row */
+  width: 33.33%; /* Adjust for three photos per row */
   padding: 5px; /* Add padding between photos */
 }
 
