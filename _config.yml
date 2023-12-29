@@ -81,7 +81,7 @@ photos:
   - thumbnail: "Photos/15.jpg"
   - thumbnail: "Photos/16.jpg"
   - thumbnail: "Photos/17.JPG"
-   - thumbnail: "Photos/4.jpg"
+  - thumbnail: "Photos/4.jpg"
 
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
