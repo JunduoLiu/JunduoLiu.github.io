@@ -21,8 +21,28 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
   transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
-.game-item:hover img {
-  transform: scale(1.2); /* Scale up the image on hover */
+.game-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initially hide the overlay */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  transition: opacity 0.3s ease; /* Add a smooth transition effect for the overlay */
+}
+
+.game-item:hover .overlay {
+  opacity: 1; /* Show the overlay on hover */
+}
+
+.game-item h3 {
+  margin: 0;
+  color: #fff; /* Adjust the text color */
 }
 
 .new-line {
