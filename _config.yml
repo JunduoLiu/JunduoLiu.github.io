@@ -68,7 +68,6 @@ photos:
   - thumbnail: "Photos/1.jpg"
   - thumbnail: "Photos/2.jpg"
   - thumbnail: "Photos/3.jpg"
-  - thumbnail: "Photos/4.jpg"
   - thumbnail: "Photos/5.jpg"
   - thumbnail: "Photos/6.jpg"
   - thumbnail: "Photos/7.jpg"
@@ -82,6 +81,7 @@ photos:
   - thumbnail: "Photos/15.jpg"
   - thumbnail: "Photos/16.jpg"
   - thumbnail: "Photos/17.JPG"
+   - thumbnail: "Photos/4.jpg"
 
 # Exclusions
 exclude: [ 'README.md', 'COPYING' ]
