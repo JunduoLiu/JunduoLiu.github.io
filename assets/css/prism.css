@@ -12,13 +12,14 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
   width: 48%;
   margin: 1%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .game-item img {
   width: 50%;
   height: auto;
   transition: transform 0.3s ease; /* Add a smooth transition effect */
+  box-sizing: border-box;
+  transform-origin: center;
 }
 
 .game-item:hover img {
