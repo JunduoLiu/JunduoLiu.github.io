@@ -16,7 +16,7 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
 }
 
 .game-item img {
-  width: 100%;
+  width: 50%;
   height: auto;
   transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
