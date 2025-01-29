@@ -12,6 +12,7 @@ code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-fami
   width: 48%;
   margin: 1%;
   box-sizing: border-box;
+  overflow: visible; /* Allow hover effects to be visible */
 }
 
 .game-item img {
