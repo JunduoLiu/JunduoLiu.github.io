@@ -1,7 +1,12 @@
 source "https://rubygems.org"
-ruby "3.0.2"
+ruby ">= 3.2.2"
 gem "jekyll"
 gem "jekyll-feed"
 gem "jekyll-paginate-v2"
 gem "jekyll-seo-tag"
 gem "webrick"
+gem "json"
+gem "nokogiri"
+gem "rack", "~> 2.2.4"
+gem "rspec"
+
