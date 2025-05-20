@@ -5,17 +5,98 @@ permalink: /games/
 ---
 
 <h2>Games</h2>
-
 <a href="https://toby0001.itch.io/" target="_blank"><h3>itch page</h3></a>
 
-<div class="games-container">
+<!-- Floating container -->
+<div id="floating-container">
   {% for game in site.games %}
-    <a href="{{ game.game_url }}" target="_blank" class="game-item">
-      <div class="overlay">
-        <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}">
-      </div>
-        <h3>{{ game.title }}</h3>
+    <a href="{{ game.game_url }}" target="_blank" class="floating-thumb" data-title="{{ game.title }}">
+      <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}">
     </a>
-    {% cycle '', '<div class="new-line"></div>' %}
   {% endfor %}
 </div>
+
+<!-- Tooltip that follows mouse -->
+<div id="game-tooltip" class="tooltip"></div>
+
+<script>
+  const container = document.getElementById("floating-container");
+  const thumbs = document.querySelectorAll(".floating-thumb");
+  const tooltip = document.getElementById("game-tooltip");
+
+  // Set initial position and motion for each image
+  function initializeThumbs() {
+    const rect = container.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
+
+    thumbs.forEach((thumb) => {
+      const imageWidth = thumb.offsetWidth || 120;
+      const imageHeight = thumb.offsetHeight || 120;
+
+      const x = Math.random() * (containerWidth - imageWidth);
+      const y = Math.random() * (containerHeight - imageHeight);
+
+      thumb.style.left = `${x}px`;
+      thumb.style.top = `${y}px`;
+      thumb.dataset.dx = (Math.random() - 0.5) * 0.5;
+      thumb.dataset.dy = (Math.random() - 0.5) * 0.5;
+    });
+  }
+
+  function animate() {
+    const rect = container.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
+
+    thumbs.forEach((thumb) => {
+      let x = parseFloat(thumb.style.left);
+      let y = parseFloat(thumb.style.top);
+      let dx = parseFloat(thumb.dataset.dx);
+      let dy = parseFloat(thumb.dataset.dy);
+
+      const imageWidth = thumb.offsetWidth;
+      const imageHeight = thumb.offsetHeight;
+
+      x += dx;
+      y += dy;
+
+      // Bounce horizontally
+      if (x < 0 || x > containerWidth - imageWidth) {
+        dx *= -1;
+        x = Math.max(0, Math.min(containerWidth - imageWidth, x));
+      }
+
+      // Bounce vertically
+      if (y < 0 || y > containerHeight - imageHeight) {
+        dy *= -1;
+        y = Math.max(0, Math.min(containerHeight - imageHeight, y));
+      }
+
+      thumb.style.left = `${x}px`;
+      thumb.style.top = `${y}px`;
+      thumb.dataset.dx = dx;
+      thumb.dataset.dy = dy;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  // Tooltip behavior
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener("mouseenter", () => {
+      tooltip.textContent = thumb.dataset.title;
+      tooltip.style.opacity = 1;
+    });
+    thumb.addEventListener("mousemove", (e) => {
+      tooltip.style.top = e.clientY + 15 + "px";
+      tooltip.style.left = e.clientX + 15 + "px";
+    });
+    thumb.addEventListener("mouseleave", () => {
+      tooltip.style.opacity = 0;
+    });
+  });
+
+  initializeThumbs();
+  animate();
+</script>

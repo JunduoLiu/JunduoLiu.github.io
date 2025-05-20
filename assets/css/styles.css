@@ -120,7 +120,7 @@ header h1, h5 {
 /* 04 Color and contrast */
 body {
   color: #c5ccce;
-  background-color: #282f3a;
+  background-color: #000000;
 }
 
 h1,
@@ -248,3 +248,46 @@ strong {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+#floating-container {
+  position: relative;
+  width: 60vw;  /* or fixed width like 1000px */
+  height: 80vh; /* or fixed height like 600px */
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.floating-thumb {
+  position: absolute;    /* This is key for free movement */
+  width: 120px;
+  will-change: transform;
+  transition: transform 0.2s;
+  z-index: 1;
+}
+
+.floating-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+
+/* Optional zoom on hover */
+.floating-thumb:hover {
+  transform: scale(1.05);
+}
+
+/* Tooltip that follows the mouse */
+.tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.1s;
+  z-index: 9999;
+}
