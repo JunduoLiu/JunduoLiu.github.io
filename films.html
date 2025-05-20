@@ -4,18 +4,34 @@ title: Films
 permalink: /films/
 ---
 
-
 <h2>Films</h2>
 
-<ul>
+<div class="film-gallery">
   {% for film in site.films %}
-    <li>
-      <h3>{{ film.title }}</h3>
-      <p>{{ film.description }}</p>
-      <img src="{{ film.thumbnail | relative_url }}" alt="{{ film.title }}" style="max-width: 600px; max-height: 338px;">
-      <a href="{{ film.video_url }}" target="_blank">Watch</a>
-    </li>
+    <div class="film-card" onclick="expandFilm(this)">
+      <div class="film-preview">
+        <img class="film-thumb" src="{{ film.thumbnail | relative_url }}" alt="{{ film.title }}">
+        <h3 class="film-title">{{ film.title }}</h3>
+      </div>
+      <div class="film-details">
+        <p>{{ film.description }}</p>
+        <a href="{{ film.video_url }}" target="_blank">▶ Watch</a>
+      </div>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
-<p>Vimeo Page: <a href="https://vimeo.com/user66065605" target="_blank">https://vimeo.com/user66065605</a></p>
+
+<p class="vimeo-link">More on Vimeo: <a href="https://vimeo.com/user66065605" target="_blank">vimeo.com/user66065605</a></p>
+
+<script>
+  function expandFilm(card) {
+    // Collapse any previously expanded cards
+    document.querySelectorAll('.film-card.expanded').forEach(el => {
+      if (el !== card) el.classList.remove('expanded');
+    });
+
+    // Toggle the clicked one
+    card.classList.toggle('expanded');
+  }
+</script>
