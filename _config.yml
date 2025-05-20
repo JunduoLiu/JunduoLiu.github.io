@@ -17,9 +17,9 @@ analytics:
     script_source: 'https://plausible.io/js/script.js'
 
 # Styling
-sass:
-  sass_dir: _sass
-  style: expanded # compact, expanded or compressed
+#sass:
+  #sass_dir: _sass
+  #style: expanded # compact, expanded or compressed
 
 # Paginate
 pagination:
