@@ -120,7 +120,7 @@ header h1, h5 {
 /* 04 Color and contrast */
 body {
   color: #c5ccce;
-  background-color: #000000;
+  background-color: #1e1e1e;
 }
 
 h1,
@@ -265,12 +265,17 @@ strong {
   z-index: 1;
 }
 
+
 .floating-thumb img {
-  width: 100%;
+  width: auto;
   height: auto;
   display: block;
   border-radius: 6px;
+  max-width: 280px;  /* Optional cap */
+  max-height: 280px; /* Optional cap */
 }
+
+
 
 
 /* Optional zoom on hover */

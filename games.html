@@ -26,23 +26,33 @@ permalink: /games/
 
   // Set initial position and motion for each image
   function initializeThumbs() {
-    const rect = container.getBoundingClientRect();
-    const containerWidth = rect.width;
-    const containerHeight = rect.height;
+  const rect = container.getBoundingClientRect();
+  const containerWidth = rect.width;
+  const containerHeight = rect.height;
 
-    thumbs.forEach((thumb) => {
-      const imageWidth = thumb.offsetWidth || 120;
-      const imageHeight = thumb.offsetHeight || 120;
+  thumbs.forEach((thumb) => {
+    const img = thumb.querySelector('img');
 
-      const x = Math.random() * (containerWidth - imageWidth);
-      const y = Math.random() * (containerHeight - imageHeight);
+    // Wait until the image is fully loaded
+    img.onload = () => {
+      const imageWidth = img.offsetWidth;
+      const imageHeight = img.offsetHeight;
+
+      const maxX = containerWidth - imageWidth;
+      const maxY = containerHeight - imageHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
       thumb.style.left = `${x}px`;
       thumb.style.top = `${y}px`;
+
       thumb.dataset.dx = (Math.random() - 0.5) * 0.5;
       thumb.dataset.dy = (Math.random() - 0.5) * 0.5;
-    });
-  }
+    };
+  });
+}
+
 
   function animate() {
     const rect = container.getBoundingClientRect();
@@ -55,8 +65,10 @@ permalink: /games/
       let dx = parseFloat(thumb.dataset.dx);
       let dy = parseFloat(thumb.dataset.dy);
 
-      const imageWidth = thumb.offsetWidth;
-      const imageHeight = thumb.offsetHeight;
+      const img = thumb.querySelector('img');
+      const imageWidth = img.offsetWidth;
+      const imageHeight = img.offsetHeight;
+
 
       x += dx;
       y += dy;

@@ -57,9 +57,12 @@ games:
   - title: "Fingers"
     game_url: "https://toby0001.itch.io/fingers"
     thumbnail: "/Thumbnails/Fingers.png"
-  - title: "Superstitions DEMO"
+  - title: "Superstitions"
     game_url: "https://toby0001.itch.io/superstitions"
     thumbnail: "/Thumbnails/Superstitions.png"
+  - title: "Silo_Remains"
+    game_url: "https://toby0001.itch.io/silo-remains"
+    thumbnail: "/Thumbnails/Silo_Remains.png"
 
 photos:
   - thumbnail: "Photos/1.jpg"
