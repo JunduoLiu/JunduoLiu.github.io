@@ -1,8 +1,6 @@
-- name: About & Contact
-  link: /about/
-- name: Films
-  link: /films/
 - name: Games
   link: /games/
+- name: Films
+  link: /films/
 - name: Photos
   link: /photos/

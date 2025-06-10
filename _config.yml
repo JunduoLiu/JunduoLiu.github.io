@@ -44,7 +44,7 @@ films:
     thumbnail: "/Thumbnails/ChinaJar.png"
   - title: "Fishing Nights (2021)"
     video_url: "https://vimeo.com/763715358"
-    description: "After retiring, the man's life becomes dull. Fishing becomes his escape. One night, he meets a girl selling a fish-like stone, adding a sparkle to his monotonous life."
+    description: "After retirement, a man’s life slips into quiet monotony—until fishing becomes his only escape. One evening, he encounters a girl selling a stone shaped like a fish, bringing an unexpected glimmer of wonder back into his world."
     thumbnail: "/Thumbnails/FishingNights.png"
 #games
 games:

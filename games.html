@@ -4,10 +4,9 @@ title: Games
 permalink: /games/
 ---
 
-<h2>Games</h2>
-<a href="https://toby0001.itch.io/" target="_blank"><h3>itch page</h3></a>
+<!-- Games Section -->
+ <h2>Games</h2>
 
-<!-- Floating container -->
 <div id="floating-container">
   {% for game in site.games %}
     <a href="{{ game.game_url }}" target="_blank" class="floating-thumb" data-title="{{ game.title }}">
@@ -16,7 +15,6 @@ permalink: /games/
   {% endfor %}
 </div>
 
-<!-- Tooltip that follows mouse -->
 <div id="game-tooltip" class="tooltip"></div>
 
 <script>
@@ -24,35 +22,27 @@ permalink: /games/
   const thumbs = document.querySelectorAll(".floating-thumb");
   const tooltip = document.getElementById("game-tooltip");
 
-  // Set initial position and motion for each image
   function initializeThumbs() {
-  const rect = container.getBoundingClientRect();
-  const containerWidth = rect.width;
-  const containerHeight = rect.height;
+    const rect = container.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
 
-  thumbs.forEach((thumb) => {
-    const img = thumb.querySelector('img');
-
-    // Wait until the image is fully loaded
-    img.onload = () => {
-      const imageWidth = img.offsetWidth;
-      const imageHeight = img.offsetHeight;
-
-      const maxX = containerWidth - imageWidth;
-      const maxY = containerHeight - imageHeight;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
-      thumb.style.left = `${x}px`;
-      thumb.style.top = `${y}px`;
-
-      thumb.dataset.dx = (Math.random() - 0.5) * 0.5;
-      thumb.dataset.dy = (Math.random() - 0.5) * 0.5;
-    };
-  });
-}
-
+    thumbs.forEach((thumb) => {
+      const img = thumb.querySelector('img');
+      img.onload = () => {
+        const imageWidth = img.offsetWidth;
+        const imageHeight = img.offsetHeight;
+        const maxX = containerWidth - imageWidth;
+        const maxY = containerHeight - imageHeight;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        thumb.style.left = `${x}px`;
+        thumb.style.top = `${y}px`;
+        thumb.dataset.dx = (Math.random() - 0.5) * 0.5;
+        thumb.dataset.dy = (Math.random() - 0.5) * 0.5;
+      };
+    });
+  }
 
   function animate() {
     const rect = container.getBoundingClientRect();
@@ -60,26 +50,21 @@ permalink: /games/
     const containerHeight = rect.height;
 
     thumbs.forEach((thumb) => {
-      let x = parseFloat(thumb.style.left);
-      let y = parseFloat(thumb.style.top);
-      let dx = parseFloat(thumb.dataset.dx);
-      let dy = parseFloat(thumb.dataset.dy);
-
+      let x = parseFloat(thumb.style.left) || 0;
+      let y = parseFloat(thumb.style.top) || 0;
+      let dx = parseFloat(thumb.dataset.dx) || 0.2;
+      let dy = parseFloat(thumb.dataset.dy) || 0.2;
       const img = thumb.querySelector('img');
       const imageWidth = img.offsetWidth;
       const imageHeight = img.offsetHeight;
 
-
       x += dx;
       y += dy;
 
-      // Bounce horizontally
       if (x < 0 || x > containerWidth - imageWidth) {
         dx *= -1;
         x = Math.max(0, Math.min(containerWidth - imageWidth, x));
       }
-
-      // Bounce vertically
       if (y < 0 || y > containerHeight - imageHeight) {
         dy *= -1;
         y = Math.max(0, Math.min(containerHeight - imageHeight, y));
@@ -94,7 +79,6 @@ permalink: /games/
     requestAnimationFrame(animate);
   }
 
-  // Tooltip behavior
   thumbs.forEach((thumb) => {
     thumb.addEventListener("mouseenter", () => {
       tooltip.textContent = thumb.dataset.title;

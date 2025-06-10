@@ -158,7 +158,7 @@ strong {
 }
 
 .header {
-  padding-top: 35px;
+  padding-top: 20px;
 }
 
 .header nav {
@@ -296,6 +296,37 @@ strong {
   transition: opacity 0.1s;
   z-index: 9999;
 }
+
+@media only screen and (max-width: 768px) {
+  #floating-container {
+    position: static;
+    width: 90vw;
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .floating-thumb {
+    position: static;
+    width: auto;
+    transform: none !important;
+  }
+
+  .floating-thumb img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
+
 
 .film-gallery {
   display: flex;
