@@ -48,8 +48,8 @@ films:
     thumbnail: "/Thumbnails/FishingNights.png"
 #games
 games:
-  - title: "Afterpath"
-    game_url: "https://toby0001.itch.io/afterpath"
+  - title: "A Walk Under Many Suns"
+    game_url: "https://toby0001.itch.io/awalkundermanysuns"
     thumbnail: "/Thumbnails/Afterpath.png"
   - title: "Can't Get Over It"
     game_url: "https://toby0001.itch.io/cant-get-over-it"
