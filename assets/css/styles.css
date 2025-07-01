@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-body {
+/* body {
   font-family: "Inter", sans-serif;
   background-color: #1a1a1a;
   color: #eee;
-}
+} */
 
 /* https://www.joshwcomeau.com/css/custom-css-reset/ */
 /*
@@ -86,13 +86,18 @@ p, h1, h2, h3, h4, h5, h6 {
 /* Style inspiration and settings adapted from https://github.com/jgthms/web-design-in-4-minutes*/
 /* Base */
 html {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 /* 01 Font family */
 body {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Barlow Semi Condensed", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #eee;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
+
 
 
 /* 03 Spacing */
