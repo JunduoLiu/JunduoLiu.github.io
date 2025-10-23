@@ -1,16 +1,19 @@
-<div class="header" style="max-width: 900px; margin: 0 auto; padding-top: 1rem;">
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <img src="/assets/images/me.jpg" alt="Junduo Liu's Profile Image" style="width: 150px; height: auto; border-radius: 2px; flex-shrink: 0;">
-    
-    <div>
-      <h1 style="margin-bottom: 0;">Junduo Liu</h1>
-      <h5 style="margin: 0.2rem 0 0.6rem;"><i>Game Designer / Filmmaker</i></h5>
-      <p style="margin: 0; font-size: 0.95rem;"><a href="mailto:jliu9963@gmail.com">jliu9963@gmail.com</a></p>
-      <p style="margin: 0; font-size: 0.95rem;"><a href="https://www.instagram.com/endorphinsss/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+<div class="header">
+  <div class="header-left">
+    <img src="/assets/images/me.jpg" alt="Junduo Liu's Profile Image">
+    <div class="header-text">
+      <h1>Junduo Liu</h1>
+      <h5><i>Game Designer / Filmmaker</i></h5>
+      <p><a href="mailto:jliu9963@gmail.com">jliu9963@gmail.com</a></p>
+      <p><a href="https://www.instagram.com/endorphinsss/" target="_blank">Instagram</a></p>
     </div>
   </div>
 
-  <br>
-  {% include nav.html %}
-  <hr style="margin-top: 0rem;">
+  <div class="header-center">
+    <nav class="nav-display">
+      {% for item in site.data.nav %}
+        <a href="{{ item.link }}">{{ item.name }}</a>
+      {% endfor %}
+    </nav>
+  </div>
 </div>

@@ -1,0 +1,259 @@
+---
+layout: default
+title: Works
+permalink: /works/
+---
+
+<!-- ========================= -->
+<!-- 1. GAMES SECTION -->
+<!-- ========================= -->
+<section id="games-page">
+    <div class="floating-wrapper"></div>
+      <div id="floating-container">
+        {% for game in site.games %}
+          <a href="{{ game.game_url }}" target="_blank" class="floating-thumb" data-title="{{ game.title }}">
+            <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}">
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  <div id="game-tooltip" class="tooltip"></div>
+</section>
+
+<!-- ========================= -->
+<!-- 2. FILMS SECTION -->
+<!-- ========================= -->
+<section id="films-page">
+
+  <div class="film-gallery">
+    {% for film in site.films %}
+      <div class="film-card">
+        <div class="film-player">
+          <iframe
+            src="https://player.vimeo.com/video/{{ film.video_url | split: '/' | last }}"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <h3 class="film-title">{{ film.title }}</h3>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+
+<!-- ========================= -->
+<!-- 3. PHOTOS SECTION -->
+<!-- ========================= -->
+<section id="photos-page">
+
+
+  <div class="photos-container">
+    {% for photo in site.photos %}
+      <div class="photo-item">
+        <img src="{{ photo.thumbnail | relative_url }}" alt="Photo">
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<script>
+  // Games Floating thumbs logic
+  const container = document.getElementById("floating-container");
+  const thumbs = document.querySelectorAll(".floating-thumb");
+  const tooltip = document.getElementById("game-tooltip");
+  const thumbStates = [];
+
+  function initializeThumbs() {
+    const rect = container.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
+    thumbs.forEach((thumb, index) => {
+      const img = thumb.querySelector("img");
+      img.onload = () => {
+        const imageWidth = img.offsetWidth;
+        const imageHeight = img.offsetHeight;
+        const maxX = containerWidth - imageWidth - 40; // account for padding
+        const maxY = containerHeight - imageHeight - 40;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        thumbStates[index] = {
+          x,
+          y,
+          dx: (Math.random() - 0.5) * 3,
+          dy: (Math.random() - 0.5) * 3,
+          w: imageWidth,
+          h: imageHeight,
+        };
+        thumb.style.transform = `translate(${x}px, ${y}px)`;
+      };
+    });
+  }
+
+  function animate() {
+    const rect = container.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
+    thumbStates.forEach((state, index) => {
+      if (!state) return;
+      state.x += state.dx;
+      state.y += state.dy;
+      if (state.x < 0 || state.x > containerWidth - state.w) state.dx *= -1;
+      if (state.y < 0 || state.y > containerHeight - state.h) state.dy *= -1;
+      thumbs[index].style.transform = `translate(${state.x}px, ${state.y}px)`;
+    });
+    requestAnimationFrame(animate);
+  }
+
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener("mouseenter", () => {
+      tooltip.textContent = thumb.dataset.title;
+      tooltip.style.opacity = 1;
+    });
+    thumb.addEventListener("mousemove", (e) => {
+      tooltip.style.top = e.clientY + 15 + "px";
+      tooltip.style.left = e.clientX + 15 + "px";
+    });
+    thumb.addEventListener("mouseleave", () => {
+      tooltip.style.opacity = 0;
+    });
+  });
+
+  initializeThumbs();
+  animate();
+
+  // Films logic
+  function playFilm(videoUrl, thumbWrapper) {
+  const card = thumbWrapper.closest(".film-card");
+  const playerContainer = card.querySelector(".film-player");
+  
+  // If a player already exists, toggle it off
+  if (playerContainer.innerHTML.trim() !== "") {
+    playerContainer.innerHTML = "";
+    return;
+  }
+
+  // Remove any other open players
+  document.querySelectorAll(".film-player").forEach(p => p.innerHTML = "");
+
+  // Create iframe (supports Vimeo, YouTube, etc.)
+  const iframe = document.createElement("iframe");
+  iframe.src = videoUrl.replace("watch?v=", "embed/"); // handles YouTube-style URLs
+  iframe.width = "100%";
+  iframe.height = "400";
+  iframe.frameBorder = "0";
+  iframe.allow = "autoplay; fullscreen";
+  iframe.allowFullscreen = true;
+  playerContainer.appendChild(iframe);
+}
+
+//Photos logic
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.createElement("div");
+  modal.classList.add("photo-modal");
+  modal.innerHTML = `<img src="" alt="Expanded Photo">`;
+  document.body.appendChild(modal);
+
+  const modalImg = modal.querySelector("img");
+
+  document.querySelectorAll(".photo-item img").forEach(img => {
+    img.addEventListener("click", () => {
+      modalImg.src = img.src.replace("/thumbnails/", "/"); // optional if you have larger versions
+      modal.classList.add("active");
+    });
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("active");
+  });
+});
+
+
+ //Header hides logic 
+window.addEventListener('load', function() {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  // Create invisible top trigger zone
+  const revealZone = document.createElement('div');
+  revealZone.className = 'header-reveal-zone';
+  document.body.appendChild(revealZone);
+
+  let isMouseOverTop = false;
+
+  function updateHeaderVisibility() {
+    const atTop = window.scrollY < 10;
+    if (atTop || isMouseOverTop) {
+      header.classList.remove('hidden');
+    } else {
+      header.classList.add('hidden');
+    }
+  }
+
+  // Watch scroll
+  window.addEventListener('scroll', updateHeaderVisibility);
+
+  // When mouse enters header or reveal zone
+  function onMouseEnter() {
+    isMouseOverTop = true;
+    header.classList.remove('hidden');
+  }
+
+  // When mouse leaves both header and reveal zone
+  function onMouseLeave(e) {
+    // if mouse leaves header or reveal zone but goes to the other one, ignore
+    const toElement = e.relatedTarget;
+    if (toElement && (header.contains(toElement) || revealZone.contains(toElement))) {
+      return;
+    }
+    isMouseOverTop = false;
+    updateHeaderVisibility();
+  }
+
+  header.addEventListener('mouseenter', onMouseEnter);
+  revealZone.addEventListener('mouseenter', onMouseEnter);
+  header.addEventListener('mouseleave', onMouseLeave);
+  revealZone.addEventListener('mouseleave', onMouseLeave);
+
+  // Initial check
+  updateHeaderVisibility();
+});
+
+//bg title logic
+window.addEventListener('load', () => {
+  const bgTitle = document.getElementById('global-bg-title');
+  const sections = document.querySelectorAll('section');
+  const titles = {
+    'games-page': 'Games',
+    'films-page': 'Films',
+    'photos-page': 'Photos'
+  };
+
+  function updateBgTitle() {
+    let current = null;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+      if (inView) current = titles[section.id];
+    });
+
+    if (current) {
+      if (bgTitle.textContent !== current) {
+        bgTitle.style.opacity = 0;
+        setTimeout(() => {
+          bgTitle.textContent = current;
+          bgTitle.style.opacity = 1;
+        }, 300);
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateBgTitle);
+  updateBgTitle(); // run once on load
+});
+</script>

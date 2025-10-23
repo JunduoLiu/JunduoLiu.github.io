@@ -1,6 +1,6 @@
 - name: Games
-  link: /games/
+  link: "#games-page"
 - name: Films
-  link: /films/
+  link: "#films-page"
 - name: Photos
-  link: /photos/
+  link: "#photos-page"
