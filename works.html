@@ -173,55 +173,50 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
- //Header hides logic 
-window.addEventListener('load', function() {
-  const header = document.querySelector('.header');
+// Header hide/reveal logic
+window.addEventListener("load", function () {
+  const header = document.querySelector(".header");
   if (!header) return;
 
-  // Create invisible top trigger zone
-  const revealZone = document.createElement('div');
-  revealZone.className = 'header-reveal-zone';
-  document.body.appendChild(revealZone);
-
   let isMouseOverTop = false;
+  const revealZoneHeight = 200; // how tall your invisible reveal zone is
 
   function updateHeaderVisibility() {
     const atTop = window.scrollY < 10;
     if (atTop || isMouseOverTop) {
-      header.classList.remove('hidden');
+      header.classList.remove("hidden");
     } else {
-      header.classList.add('hidden');
+      header.classList.add("hidden");
     }
   }
 
-  // Watch scroll
-  window.addEventListener('scroll', updateHeaderVisibility);
+  // Watch scroll position
+  window.addEventListener("scroll", updateHeaderVisibility);
 
-  // When mouse enters header or reveal zone
-  function onMouseEnter() {
+  // Track mouse position instead of using a div
+  document.addEventListener("mousemove", (e) => {
+    const y = e.clientY;
+    const withinZone = y < revealZoneHeight;
+    if (withinZone !== isMouseOverTop) {
+      isMouseOverTop = withinZone;
+      updateHeaderVisibility();
+    }
+  });
+
+  // If mouse enters the header itself, keep it shown
+  header.addEventListener("mouseenter", () => {
     isMouseOverTop = true;
-    header.classList.remove('hidden');
-  }
+    updateHeaderVisibility();
+  });
 
-  // When mouse leaves both header and reveal zone
-  function onMouseLeave(e) {
-    // if mouse leaves header or reveal zone but goes to the other one, ignore
-    const toElement = e.relatedTarget;
-    if (toElement && (header.contains(toElement) || revealZone.contains(toElement))) {
-      return;
-    }
+  header.addEventListener("mouseleave", () => {
     isMouseOverTop = false;
     updateHeaderVisibility();
-  }
+  });
 
-  header.addEventListener('mouseenter', onMouseEnter);
-  revealZone.addEventListener('mouseenter', onMouseEnter);
-  header.addEventListener('mouseleave', onMouseLeave);
-  revealZone.addEventListener('mouseleave', onMouseLeave);
-
-  // Initial check
   updateHeaderVisibility();
 });
+
 
 //bg title logic
 window.addEventListener('load', () => {
