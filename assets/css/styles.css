@@ -197,7 +197,7 @@ strong {
   width: 100%;
   height: 200px; /* how tall the trigger zone is */
   z-index: 9998; /* just below header */
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 
