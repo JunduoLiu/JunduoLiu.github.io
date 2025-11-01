@@ -3,6 +3,28 @@ layout: default
 title: Works
 permalink: /works/
 ---
+<!-- ========================= -->
+<!-- 0. ABOUT SECTION -->
+<!-- ========================= -->
+<section id="about-page">
+
+  <div class="about-container">
+    <img src="/assets/images/me.jpg" alt="Junduo Liu" class="about-photo">
+
+    <div class="about-text">
+      <h1>About Junduo Liu</h1>
+      <p>
+        Junduo(Toby) Liu is a game designer and filmmaker based in NYC. 
+        His works navigate the space between the absurd and the sincere.
+        Moving between fantasy and the real world, his practice explores how humor, grief, 
+        and memory shape the ways we make sense of ourselves and the worlds we build.<br>
+        <br>
+        Junduo Liu holds a Bachelor’s degree in Computer Science and Film Studies from Wesleyan University, and a Master of Fine Arts from the NYU Game Center.
+      </p>
+    </div>
+  </div>
+
+</section>
 
 <!-- ========================= -->
 <!-- 1. GAMES SECTION -->
@@ -219,10 +241,11 @@ window.addEventListener("load", function () {
 
 
 //bg title logic
-window.addEventListener('load', () => {
+  window.addEventListener('load', () => {
   const bgTitle = document.getElementById('global-bg-title');
   const sections = document.querySelectorAll('section');
   const titles = {
+    'about-page': '',
     'games-page': 'Games',
     'films-page': 'Films',
     'photos-page': 'Photos'
@@ -231,18 +254,38 @@ window.addEventListener('load', () => {
   function updateBgTitle() {
     let current = null;
 
+    // Find which section is in view
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
       const inView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
       if (inView) current = titles[section.id];
     });
 
-    if (current) {
+    if (current !== undefined) {
       if (bgTitle.textContent !== current) {
         bgTitle.style.opacity = 0;
+
         setTimeout(() => {
-          bgTitle.textContent = current;
-          bgTitle.style.opacity = 1;
+          if (current === '') {
+            bgTitle.textContent = '';
+            bgTitle.style.opacity = 0;
+          } else {
+            bgTitle.textContent = current;
+
+            // 🟢 Different fonts + colors per section
+            if (current === 'Games') {
+              bgTitle.style.fontFamily = '"Bitcount Grid Single", sans-serif';
+              bgTitle.style.color = 'rgba(255, 80, 80, 0.25)'; // red tint
+            } else if (current === 'Films') {
+              bgTitle.style.fontFamily = '"Inika", serif';
+              bgTitle.style.color = 'rgba(120, 180, 255, 0.25)'; // soft blue
+            } else if (current === 'Photos') {
+              bgTitle.style.fontFamily = '"Space Mono", monospace';
+              bgTitle.style.color = 'rgba(180, 255, 160, 0.25)'; // mint green
+            }
+
+            bgTitle.style.opacity = 1;
+          }
         }, 300);
       }
     }
@@ -251,4 +294,86 @@ window.addEventListener('load', () => {
   window.addEventListener('scroll', updateBgTitle);
   updateBgTitle(); // run once on load
 });
+
+
+//CurorTrail
+window.addEventListener("load", () => {
+  const canvas = document.getElementById("mouse-trail");
+  const ctx = canvas.getContext("2d");
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  window.addEventListener("resize", () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+
+  const trail = [];
+  const maxTrail = 60; // number of previous positions to render
+  const smoothing = 0.08; // cursor smoothing factor
+  const color = "rgba(255,255,255,0.3)"; // soft white glow
+
+  let mouseX = width / 2;
+  let mouseY = height / 2;
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+
+  //MouseTrail
+//   document.addEventListener("mousemove", (e) => {
+//     mouseX = e.clientX;
+//     mouseY = e.clientY;
+//   });
+
+//   function animate() {
+//   // clear each frame to prevent permanent marks
+//   ctx.clearRect(0, 0, width, height);
+
+//   // smooth follow motion
+//   currentX += (mouseX - currentX) * smoothing;
+//   currentY += (mouseY - currentY) * smoothing;
+
+//   // record trail positions
+//   trail.push({ x: currentX, y: currentY });
+//   if (trail.length > maxTrail) trail.shift();
+
+//   ctx.shadowColor = "rgba(255,255,255,0.6)";
+//   ctx.shadowBlur = 20;
+
+//   // draw comet
+//   for (let i = 0; i < trail.length - 1; i++) {
+//     const p = trail[i];
+//     const next = trail[i + 1];
+
+//     // progress from tail (0) → head (1)
+//     const t = i / (trail.length - 1);
+
+//     // tail fades and narrows gradually
+//     const alpha = t * 0.6; // transparency (0 = tail invisible, 0.6 = head bright)
+//     const widthScale = 1 - t; // wide at head, narrow at tail
+
+//     ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+//     ctx.lineWidth = 20 * widthScale; // adjust base width for strength
+
+//     ctx.beginPath();
+//     ctx.moveTo(p.x, p.y);
+//     ctx.lineTo(next.x, next.y);
+//     ctx.stroke();
+//   }
+
+//   requestAnimationFrame(animate);
+// }
+
+
+
+  animate();
+});
+
+
+
 </script>

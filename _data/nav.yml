@@ -1,3 +1,5 @@
+- name: About
+  link: "#about-page"
 - name: Games
   link: "#games-page"
 - name: Films

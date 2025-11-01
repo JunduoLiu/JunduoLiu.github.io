@@ -184,10 +184,10 @@ strong {
   width: 100%;
   z-index: 9999;
   background-color: #1e1e1e;
-  border-bottom: 1px solid rgba(255,255,255,0.467);
   padding: 0rem 0;
   transition: transform 0.4s ease;
   pointer-events: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .header-reveal-zone {
@@ -195,23 +195,10 @@ strong {
   top: 0;
   left: 0;
   width: 100%;
-  height: 200px;
-  z-index: 9998;
-  pointer-events: none; /* default: no click blocking */
+  height: 200px; /* how tall the trigger zone is */
+  z-index: 9998; /* just below header */
+  pointer-events: none;
 }
-
-/* The pseudo-element is the hover trigger */
-.header-reveal-zone::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  pointer-events: auto;     /* this layer can detect hover */
-  background: transparent;  /* stays invisible */
-}
-
 
 
 /* When hidden, slide header up */
@@ -363,10 +350,73 @@ body {
   }
 }
 
+/* ========================= */
+/* ABOUT SECTION */
+/* ========================= */
+#about-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 4rem 2rem;
+  color: #eee;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1000px;
+  width: 80vw;
+}
+
+.about-photo {
+  width: 220px;
+  height: auto;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.about-text {
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.about-text h1 {
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.about-text h5 {
+  margin-top: 0;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.about-links a {
+  color: #7e92a2;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo {
+    width: 160px;
+  }
+}
+
+
 /*# sourceMappingURL=styles.css.map */
 #games-page {
   margin-top: 110px; /* offset only the first section */
-  border-bottom: 1px solid rgba(255,255,255,0.467);
 }
 
 
@@ -493,7 +543,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; /* center whole section contents */
-  border-bottom: 1px solid rgba(255,255,255,0.467);
+  
 }
 
 #films-page .film-gallery {
@@ -520,7 +570,7 @@ body {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
@@ -530,7 +580,7 @@ body {
   height: 100%;
   margin: 0 auto;            /* ✅ no off-center inline behavior */
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .film-title {
@@ -580,7 +630,7 @@ body {
 .photo-item img {
   width: 100%;
   height: auto;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   object-fit: cover;
   display: block;
 }
@@ -606,7 +656,7 @@ body {
 .photo-modal img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -623,13 +673,15 @@ section {
 }
 
 
+
+
 /* Background title shared style */
 .bg-title {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10vw;
+  font-size: 15vw;
   color: rgba(255, 0, 0, 0.3);
   letter-spacing: 0.1em;
   pointer-events: none;
@@ -640,6 +692,31 @@ section {
   z-index: 1;  /* ⬅️ raise it slightly */
   transition: opacity 0.6s ease;
 }
+
+#about-page .bg-title {
+  display: none !important;
+}
+
+/* Different BG-TITLE styles per section */
+
+/* GAMES */
+#games-page .bg-title {
+  font-family: "Bitcount Grid Single", sans-serif;
+  color: rgba(255, 80, 80, 0.25);  /* red tint */
+}
+
+/* FILMS */
+#films-page .bg-title {
+  font-family: "Inika", serif;
+  color: rgba(120, 180, 255, 0.25);  /* soft blue */
+}
+
+/* PHOTOS */
+#photos-page .bg-title {
+  font-family: "Space Mono", monospace;
+  color: rgba(180, 255, 160, 0.25);  /* mint green */
+}
+
 
 
 /* OnSmallScreen */
@@ -676,3 +753,17 @@ section {
     padding-top: 180px;          /* increase offset if stacked layout grows */
   }
 }
+
+/* CursorTrail 
+#mouse-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: lighten; }/* or 'screen' / 'difference' for different moods */
+
+
+
