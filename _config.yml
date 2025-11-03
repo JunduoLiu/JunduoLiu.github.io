@@ -44,25 +44,31 @@ films:
     thumbnail: "/Thumbnails/ChinaJar.png"
   - title: "Fishing Nights (2021)"
     video_url: "https://vimeo.com/763715358"
-    description: "After retirement, a man’s life slips into quiet monotony—until fishing becomes his only escape. One evening, he encounters a girl selling a stone shaped like a fish, bringing an unexpected glimmer of wonder back into his world."
+    description: "A retired man’s quiet life shifts when a girl selling a stone fish rekindles his sense of wonder."
     thumbnail: "/Thumbnails/FishingNights.png"
 #games
 games:
   - title: "A Walk Under Many Suns"
     game_url: "https://toby0001.itch.io/awalkundermanysuns"
     thumbnail: "/Thumbnails/Afterpath.png"
+    description: "A point-and-click narrative game. Guide the dead to their resting place."
   - title: "Can't Get Over It"
     game_url: "https://toby0001.itch.io/cant-get-over-it"
     thumbnail: "/Thumbnails/Can't Get Over It.png"
+    description: "An absurd physical 2D platform. Get different fingers and use them to climb to the top."
   - title: "Fingers"
     game_url: "https://toby0001.itch.io/fingers"
     thumbnail: "/Thumbnails/Fingers.png"
+    description: "A 3D walking sim in a rich man's mansion."
   - title: "Superstitions"
     game_url: "https://toby0001.itch.io/superstitions"
     thumbnail: "/Thumbnails/Superstitions.png"
+    description: "A narrative adventure set in rural China, where a policeman unravels a mystery amid belief and bureaucracy."
   - title: "Silo_Remains"
     game_url: "https://toby0001.itch.io/silo-remains"
     thumbnail: "/Thumbnails/Silo_Remains.png"
+    description: "A 3D puzzle adventure. Descend into an alien silo ruled by absurd logic and hidden symbols."
+
 
 photos:
   - thumbnail: "Photos/1.jpg"

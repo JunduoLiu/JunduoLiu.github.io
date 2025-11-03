@@ -591,6 +591,19 @@ body {
   text-align: center;
 }
 
+.film-description {
+  color: #aaa;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  opacity: 0.9;
+}
+
+
 /* Responsive scaling */
 @media (max-width: 900px) {
   .film-card {
@@ -702,19 +715,19 @@ section {
 /* GAMES */
 #games-page .bg-title {
   font-family: "Bitcount Grid Single", sans-serif;
-  color: rgba(255, 80, 80, 0.25);  /* red tint */
+  color: rgb(103, 30, 30);  /* red tint */
 }
 
 /* FILMS */
 #films-page .bg-title {
   font-family: "Inika", serif;
-  color: rgba(120, 180, 255, 0.25);  /* soft blue */
+  color: rgb(35, 52, 73);  /* soft blue */
 }
 
 /* PHOTOS */
 #photos-page .bg-title {
   font-family: "Space Mono", monospace;
-  color: rgba(180, 255, 160, 0.25);  /* mint green */
+  color: rgb(50, 70, 44);  /* mint green */
 }
 
 
