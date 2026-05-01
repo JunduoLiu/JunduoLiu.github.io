@@ -19,7 +19,7 @@ permalink: /works/
         Moving between fantasy and the real world, his practice explores how humor, grief, 
         and memory shape the ways we make sense of ourselves and the worlds we build.<br>
         <br>
-        Junduo Liu holds a Bachelor’s degree in Computer Science and Film Studies from Wesleyan University, and a Master of Fine Arts from the NYU Game Center.
+        Junduo Liu holds a BA in Computer Science and Film Studies from Wesleyan University, and a Master of Fine Arts from the NYU Game Center.
       </p>
     </div>
   </div>
@@ -30,19 +30,18 @@ permalink: /works/
 <!-- 1. GAMES SECTION -->
 <!-- ========================= -->
 <section id="games-page">
-  <div class="floating-wrapper"></div>
-  <div id="floating-container">
+  <div class="games-grid">
     {% for game in site.games %}
-      <a href="{{ game.game_url }}" 
-         target="_blank" 
-         class="floating-thumb" 
-         data-title="{{ game.title }}" 
-         data-description="{{ game.description }}">
-        <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}">
-      </a>
+      <div class="game-card">
+        <a href="{{ game.game_url }}" target="_blank" class="game-entry">
+          <div class="game-image-container">
+            <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}" class="game-image" data-gif="{{ game.thumbnail | relative_url | replace: '.png', '.gif' | replace: '.jpg', '.gif' }}">
+          </div>
+        </a>
+        <h3 class="game-title">{{ game.title }}</h3>
+      </div>
     {% endfor %}
   </div>
-  <div id="game-tooltip" class="tooltip"></div>
 </section>
 
 
@@ -88,119 +87,8 @@ permalink: /works/
 
 
 <script>
-// Games Floating thumbs logic
-const container = document.getElementById("floating-container");
-const thumbs = document.querySelectorAll(".floating-thumb");
-const tooltip = document.getElementById("game-tooltip");
-const thumbStates = [];
-
-function initializeThumbs() {
-  const rect = container.getBoundingClientRect();
-  const containerWidth = rect.width;
-  const containerHeight = rect.height;
-
-  thumbs.forEach((thumb, index) => {
-    const img = thumb.querySelector("img");
-
-    img.onload = () => {
-      const imageWidth = img.offsetWidth;
-      const imageHeight = img.offsetHeight;
-      const maxX = containerWidth - imageWidth - 40;
-      const maxY = containerHeight - imageHeight - 40;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
-      thumbStates[index] = {
-        x,
-        y,
-        dx: (Math.random() - 0.5) * 3,
-        dy: (Math.random() - 0.5) * 3,
-        w: imageWidth,
-        h: imageHeight,
-        paused: false, // 👈 individual pause flag
-      };
-
-      thumb.style.transform = `translate(${x}px, ${y}px)`;
-    };
-
-    // Tooltip + individual pause
-    thumb.addEventListener("mouseenter", () => {
-    const title = thumb.dataset.title;
-    const description = thumb.dataset.description;
-    tooltip.innerHTML = `
-      <div style="font-weight:600; font-size:1rem;">${title}</div>
-      <div style="font-size:0.85rem; opacity:0.8; margin-top:2px;">${description}</div>
-    `;
-    tooltip.style.opacity = 1;
-
-    if (thumbStates[index]) thumbStates[index].paused = true; // pause only this one
-  });
-
-  thumb.addEventListener("mousemove", (e) => {
-    tooltip.style.top = e.clientY + 15 + "px";
-    tooltip.style.left = e.clientX + 15 + "px";
-  });
-
-  thumb.addEventListener("mouseleave", () => {
-    tooltip.style.opacity = 0;
-    if (thumbStates[index]) thumbStates[index].paused = false; // resume motion
-  });
-  });
-}
-
-function animate() {
-  const rect = container.getBoundingClientRect();
-  const containerWidth = rect.width;
-  const containerHeight = rect.height;
-
-  thumbStates.forEach((state, index) => {
-    if (!state || state.paused) return; // 👈 skip paused ones
-
-    state.x += state.dx;
-    state.y += state.dy;
-
-    if (state.x < 0 || state.x > containerWidth - state.w) state.dx *= -1;
-    if (state.y < 0 || state.y > containerHeight - state.h) state.dy *= -1;
-
-    thumbs[index].style.transform = `translate(${state.x}px, ${state.y}px)`;
-  });
-
-  requestAnimationFrame(animate);
-}
-
-initializeThumbs();
-animate();
-
-
-
-  // Films logic
-  function playFilm(videoUrl, thumbWrapper) {
-  const card = thumbWrapper.closest(".film-card");
-  const playerContainer = card.querySelector(".film-player");
-  
-  // If a player already exists, toggle it off
-  if (playerContainer.innerHTML.trim() !== "") {
-    playerContainer.innerHTML = "";
-    return;
-  }
-
-  // Remove any other open players
-  document.querySelectorAll(".film-player").forEach(p => p.innerHTML = "");
-
-  // Create iframe (supports Vimeo, YouTube, etc.)
-  const iframe = document.createElement("iframe");
-  iframe.src = videoUrl.replace("watch?v=", "embed/"); // handles YouTube-style URLs
-  iframe.width = "100%";
-  iframe.height = "400";
-  iframe.frameBorder = "0";
-  iframe.allow = "autoplay; fullscreen";
-  iframe.allowFullscreen = true;
-  playerContainer.appendChild(iframe);
-}
-
-//Photos logic
-document.addEventListener("DOMContentLoaded", () => {
+  // Photos logic
+  document.addEventListener("DOMContentLoaded", () => {
   const modal = document.createElement("div");
   modal.classList.add("photo-modal");
   modal.innerHTML = `<img src="" alt="Expanded Photo">`;
@@ -266,54 +154,92 @@ window.addEventListener("load", function () {
 });
 
 
-//bg title logic
+//bg title logic with smooth color transitions
   window.addEventListener('load', () => {
-  const bgTitle = document.getElementById('global-bg-title');
+  const bgTitleGrid = document.getElementById('bg-title-grid');
   const sections = document.querySelectorAll('section');
-  const titles = {
-    'about-page': '',
-    'games-page': 'Games',
-    'films-page': 'Films',
-    'photos-page': 'Photos'
+  const body = document.body;
+  
+  // Populate repeated grid titles for the background
+  if (bgTitleGrid) {
+    for (let i = 0; i < 80; i++) {
+      const item = document.createElement('div');
+      item.className = 'bg-title-grid-item';
+      bgTitleGrid.appendChild(item);
+    }
+  }
+  
+  // Section colors mapping
+  const sectionColors = {
+    'about-page': { bg: '#1e1e1e', title: '#ffffff', titleText: '', font: '"Bitcount Grid Single", sans-serif' },
+    'games-page': { bg: '#010A01', title: '#ffffff', titleText: 'Games', font: '"Bitcount Grid Single", sans-serif' },
+    'films-page': { bg: '#00090D', title: '#ffffff', titleText: 'Films', font: '"Inika", serif' },
+    'photos-page': { bg: '#120200', title: '#ffffff', titleText: 'Photos', font: '"Space Mono", monospace' }
   };
 
-  function updateBgTitle() {
-    let current = null;
+  // Function to interpolate between two colors
+  function interpolateColor(color1, color2, factor) {
+    const c1 = {
+      r: parseInt(color1.substring(1, 3), 16),
+      g: parseInt(color1.substring(3, 5), 16),
+      b: parseInt(color1.substring(5, 7), 16)
+    };
+    const c2 = {
+      r: parseInt(color2.substring(1, 3), 16),
+      g: parseInt(color2.substring(3, 5), 16),
+      b: parseInt(color2.substring(5, 7), 16)
+    };
+    const r = Math.round(c1.r + (c2.r - c1.r) * factor);
+    const g = Math.round(c1.g + (c2.g - c1.g) * factor);
+    const b = Math.round(c1.b + (c2.b - c1.b) * factor);
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+  }
 
-    // Find which section is in view
-    sections.forEach(section => {
+  function updateBgTitle() {
+    let currentSection = null;
+    let nextSection = null;
+    let factor = 0;
+
+    // Find current section and next section with interpolation factor
+    sections.forEach((section, index) => {
       const rect = section.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-      if (inView) current = titles[section.id];
+      const sectionMidpoint = window.innerHeight / 3; // section transition point
+      
+      if (rect.top < sectionMidpoint && rect.bottom > 0) {
+        currentSection = section.id;
+        
+        // Calculate factor for smooth transition (0 = just entered, 1 = leaving)
+        factor = 1 - (rect.top / sectionMidpoint);
+        factor = Math.max(0, Math.min(1, factor));
+        
+        if (index + 1 < sections.length) {
+          const nextRect = sections[index + 1].getBoundingClientRect();
+          if (nextRect.top < sectionMidpoint) {
+            nextSection = sections[index + 1].id;
+          }
+        }
+      }
     });
 
-    if (current !== undefined) {
-      if (bgTitle.textContent !== current) {
-        bgTitle.style.opacity = 0;
-
-        setTimeout(() => {
-          if (current === '') {
-            bgTitle.textContent = '';
-            bgTitle.style.opacity = 0;
-          } else {
-            bgTitle.textContent = current;
-
-            // 🟢 Different fonts + colors per section
-            if (current === 'Games') {
-              bgTitle.style.fontFamily = '"Bitcount Grid Single", sans-serif';
-              bgTitle.style.color = 'rgba(255, 80, 80, 0.25)'; // red tint
-            } else if (current === 'Films') {
-              bgTitle.style.fontFamily = '"Inika", serif';
-              bgTitle.style.color = 'rgba(120, 180, 255, 0.25)'; // soft blue
-            } else if (current === 'Photos') {
-              bgTitle.style.fontFamily = '"Space Mono", monospace';
-              bgTitle.style.color = 'rgba(180, 255, 160, 0.25)'; // mint green
-            }
-
-            bgTitle.style.opacity = 1;
-          }
-        }, 300);
+    if (currentSection) {
+      const current = sectionColors[currentSection];
+      
+      // Update repeated title grid text, color, and font
+      const titleItems = bgTitleGrid ? bgTitleGrid.querySelectorAll('.bg-title-grid-item') : [];
+      titleItems.forEach((item) => {
+        item.textContent = current.titleText;
+        item.style.color = current.title;
+        item.style.fontFamily = current.font;
+        item.style.opacity = current.titleText ? '0.14' : '0';
+      });
+      
+      // Smooth background color transition
+      let bgColor = current.bg;
+      if (nextSection && factor > 0) {
+        const next = sectionColors[nextSection];
+        bgColor = interpolateColor(current.bg, next.bg, factor);
       }
+      body.style.backgroundColor = bgColor;
     }
   }
 
@@ -325,29 +251,33 @@ window.addEventListener("load", function () {
 //CurorTrail
 window.addEventListener("load", () => {
   const canvas = document.getElementById("mouse-trail");
-  const ctx = canvas.getContext("2d");
+  
+  // Only run canvas code if element exists
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
 
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-
-  window.addEventListener("resize", () => {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
-  });
 
-  const trail = [];
-  const maxTrail = 60; // number of previous positions to render
-  const smoothing = 0.08; // cursor smoothing factor
-  const color = "rgba(255,255,255,0.3)"; // soft white glow
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
 
-  let mouseX = width / 2;
-  let mouseY = height / 2;
-  let currentX = mouseX;
-  let currentY = mouseY;
+    const trail = [];
+    const maxTrail = 60; // number of previous positions to render
+    const smoothing = 0.08; // cursor smoothing factor
+    const color = "rgba(255,255,255,0.3)"; // soft white glow
+
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let currentX = mouseX;
+    let currentY = mouseY;
+  }
 
 
   //MouseTrail
@@ -397,7 +327,133 @@ window.addEventListener("load", () => {
 
 
 
-  animate();
+  // Proximity-based scaling for game and photo thumbnails
+  let mousePosX = window.innerWidth / 2;
+  let mousePosY = window.innerHeight / 2;
+  
+  document.addEventListener('mousemove', (e) => {
+    mousePosX = e.clientX;
+    mousePosY = e.clientY;
+  });
+
+  // Target elements
+  const proximityRadius = 400; // Max distance to influence scale
+  const maxScale = 1.5; // Maximum scale factor (reduced for less overlap)
+  const baseScale = 1; // Base scale when far away
+
+  // Function to play sound effect (creates new instance each time)
+  function playSoundEffect() {
+    const sound = new Audio('/thumbnail sound effect.mp3');
+    sound.volume = 0.5; // Set volume to 50%
+    sound.play().catch(() => {}); // Catch promise if autoplay blocked
+  }
+
+  // Track which thumbnails have played their sound
+  const soundPlayedState = new Map();
+
+  function setupGameEntryHovers() {
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach((card, index) => {
+      const entry = card.querySelector('.game-entry');
+      const image = entry.querySelector('.game-image');
+      const cardId = `game-${index}`;
+
+      // Load GIF only when cursor is directly on the thumbnail
+      entry.addEventListener('mouseenter', () => {
+        if (image.dataset.gif) {
+          image.src = image.dataset.gif;
+          playSoundEffect();
+          soundPlayedState.set(cardId, true);
+        }
+      });
+
+      // Revert to static image when cursor leaves
+      entry.addEventListener('mouseleave', () => {
+        if (image.dataset.gif) {
+          const originalSrc = image.dataset.gif.replace('.gif', '.png');
+          image.src = originalSrc;
+          soundPlayedState.set(cardId, false);
+        }
+      });
+    });
+  }
+
+  setupGameEntryHovers();
+
+  function updateProximityScale() {
+    // Update game thumbnails with proximity-based scaling only
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach((card, index) => {
+      const cardId = `game-${index}`;
+      const entry = card.querySelector('.game-entry');
+      const container = entry.querySelector('.game-image-container');
+
+      if (!container) return; // Safety check
+
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      // Calculate distance from cursor to thumbnail center
+      const distX = mousePosX - centerX;
+      const distY = mousePosY - centerY;
+      const distance = Math.sqrt(distX * distX + distY * distY);
+
+      // Calculate scale based on proximity
+      let scale = baseScale;
+      let zIndex = 1;
+      
+      if (distance < proximityRadius) {
+        const proximityFactor = 1 - (distance / proximityRadius);
+        scale = baseScale + (maxScale - baseScale) * proximityFactor;
+        zIndex = Math.round(100 + proximityFactor * 900); // z-index from 100 to 1000
+      }
+
+      // Apply scale to the entry link itself
+      entry.style.transform = `scale(${scale})`;
+      // Apply z-index to the card (parent container)
+      card.style.zIndex = zIndex;
+    });
+
+    // Update photo thumbnails with simple scaling
+    const photoItems = document.querySelectorAll('.photo-item');
+    photoItems.forEach((item, index) => {
+      const itemId = `photo-${index}`;
+      const rect = item.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const distX = mousePosX - centerX;
+      const distY = mousePosY - centerY;
+      const distance = Math.sqrt(distX * distX + distY * distY);
+
+      let scale = baseScale;
+      let zIndex = 1;
+      let wasNearby = soundPlayedState.get(itemId) || false;
+
+      if (distance < proximityRadius) {
+        const proximityFactor = 1 - (distance / proximityRadius);
+        scale = baseScale + (maxScale - baseScale) * proximityFactor;
+        zIndex = Math.round(100 + proximityFactor * 900); // z-index from 100 to 1000
+
+        // Play sound effect when first entering proximity
+        if (!wasNearby) {
+          playSoundEffect();
+          soundPlayedState.set(itemId, true);
+        }
+      } else {
+        // Reset sound state when far away
+        soundPlayedState.set(itemId, false);
+      }
+
+      item.style.transform = `scale(${scale})`;
+      item.style.zIndex = zIndex;
+    });
+
+    requestAnimationFrame(updateProximityScale);
+  }
+
+  updateProximityScale();
 });
 
 
