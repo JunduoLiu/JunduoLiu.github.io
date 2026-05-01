@@ -782,6 +782,28 @@ section {
   body {
     padding-top: 180px;          /* increase offset if stacked layout grows */
   }
+
+  /* Mobile fixes for photos and films */
+  .photos-container {
+    grid-template-columns: 1fr;  /* single column on mobile */
+    max-width: 100%;
+    padding: 0 1rem;
+    justify-items: center;
+  }
+
+  .photo-item {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #films-page .film-gallery {
+    padding: 2rem 1rem;
+  }
+
+  .film-card {
+    width: 100%;
+    max-width: 95vw;
+  }
 }
 
 /* CursorTrail 
