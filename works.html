@@ -35,7 +35,7 @@ permalink: /works/
       <div class="game-card">
         <a href="{{ game.game_url }}" target="_blank" class="game-entry">
           <div class="game-image-container">
-            <img src="{{ game.thumbnail | relative_url }}" alt="{{ game.title }}" class="game-image" data-gif="{{ game.thumbnail | relative_url | replace: '.png', '.gif' | replace: '.jpg', '.gif' }}">
+            <img src="{{ game.thumbnail | relative_url | replace: '.gif', '.png' }}" alt="{{ game.title }}" class="game-image" data-gif="{{ game.thumbnail | relative_url | replace: '.png', '.gif' | replace: '.jpg', '.gif' }}">
           </div>
         </a>
         <h3 class="game-title">{{ game.title }}</h3>
