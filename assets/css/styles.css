@@ -787,13 +787,21 @@ section {
   .photos-container {
     grid-template-columns: 1fr;  /* single column on mobile */
     max-width: 100%;
-    padding: 0 1rem;
+    width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
     justify-items: center;
   }
 
   .photo-item {
-    max-width: 100%;
+    max-width: 280px;
     width: 100%;
+    margin: 0 auto;
+  }
+
+  #photos-page .bg-title-grid-item {
+    font-size: 2.5vw;
+    opacity: 0.05;
   }
 
   #films-page .film-gallery {
