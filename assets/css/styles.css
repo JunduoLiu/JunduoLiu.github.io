@@ -785,19 +785,20 @@ section {
 
   /* Mobile fixes for photos and films */
   .photos-container {
-    grid-template-columns: 1fr;  /* single column on mobile */
-    max-width: 100%;
-    width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-    justify-items: center;
-  }
+  grid-template-columns: 1fr;
+  max-width: 100%;
+  width: 100%;
+  padding: 1rem 0;          /* was 1rem — only vertical padding now */
+  margin: 0 auto;
+  justify-items: center;
+}
 
-  .photo-item {
-    max-width: 280px;
-    width: 100%;
-    margin: 0 auto;
-  }
+.photo-item {
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+  justify-self: center;     /* explicit grid-item centering */
+}
 
   #photos-page .bg-title-grid-item {
     font-size: 2.5vw;
@@ -811,6 +812,15 @@ section {
   .film-card {
     width: 100%;
     max-width: 95vw;
+  }
+  .bg-title-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));  /* 8 → 4 columns */
+    gap: 2vw 3vw;                                       /* more breathing room */
+  }
+
+  #photos-page .bg-title-grid-item {
+    font-size: 2.5vw;
+    opacity: 0.05;
   }
 }
 
